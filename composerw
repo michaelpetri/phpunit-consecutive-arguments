@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+# Define variables
+PHP_VERSION=${PHP_VERSION:-"8.2.1"}
+IMAGE_NAME="localhost/michaelpetri/composer-wrapper:${PHP_VERSION}-$(md5sum Dockerfile | awk '{ print $1 }')"
+
+# Build container if required
+if [[ "$(docker images -q ${IMAGE_NAME} 2> /dev/null)" == "" ]]; then
+  docker build \
+    --build-arg "PHP_VERSION=${PHP_VERSION}" \
+    --tag "${IMAGE_NAME}" \
+    .
+fi
+
+# Run container as current user with host user, group and password information
+docker run --rm --interactive --tty \
+    --user="${UID}:${GID}" \
+    --volume="/etc/group:/etc/group:ro" \
+    --volume="/etc/passwd:/etc/passwd:ro" \
+    --volume="/etc/shadow:/etc/shadow:ro" \
+    --volume="/home/${USER}/.cache:/home/${USER}/.cache" \
+    --volume="${PWD}:/app" \
+    --workdir="/app" \
+    --add-host="host.docker.internal:host-gateway" \
+    --env="XDEBUG_MODE=${XDEBUG_MODE:-off}"\
+    --env="PHP_IDE_CONFIG=serverName=localhost" \
+    --env="XDEBUG_CONFIG=client_host=host.docker.internal client_port=9003 start_with_request=yes" \
+    --env="XDEBUG_SESSION=PHPSTORM" \
+    "${IMAGE_NAME}" \
+    "composer" \
+    "${@}"
