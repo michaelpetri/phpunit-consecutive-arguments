@@ -16,7 +16,8 @@
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^3.15.1",
     "roave/security-advisories": "dev-latest",
-    "vimeo/psalm": "^5.8.0"
+    "vimeo/psalm": "^5.8.0",
+    "rector/rector": "^0.17.6"
   },
   "autoload": {
     "psr-4": {
@@ -45,6 +46,8 @@
     "security": "composer update --dry-run roave/security-advisories",
     "phpunit": "vendor/bin/phpunit --testdox --order-by=random",
     "phpunit-coverage-report": "vendor/bin/phpunit --coverage-html=.phpunit-coverage-report",
+    "rector-test": "vendor/bin/rector --dry-run",
+    "rector-debug": "vendor/bin/rector --dry-run --xdebug",
     "bash": "bash"
   }
 }
