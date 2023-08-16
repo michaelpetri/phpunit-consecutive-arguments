@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Define variables
-PHP_VERSION=${PHP_VERSION:-"8.2.1"}
+PHP_VERSION=${PHP_VERSION:-"8.2.6-cli-alpine3.18"}
 IMAGE_NAME="localhost/michaelpetri/composer-wrapper:${PHP_VERSION}-$(md5sum Dockerfile | awk '{ print $1 }')"
 
 # Build container if required
