@@ -44,7 +44,8 @@ final class ConsecutiveArgumentsRectorRule extends AbstractRector
                     ),
                     new Node\Identifier('of'),
                     $node->args,
-                )
+                ),
+                unpack: true,
             )
         ];
 
@@ -54,7 +55,7 @@ final class ConsecutiveArgumentsRectorRule extends AbstractRector
     public function getRuleDefinition(): RuleDefinition
     {
         return new RuleDefinition(
-            'Use $mock->with(ConsecutiveArguments::of(...)) instead of $mock->withConsecutive(...)',
+            'Use $mock->with(...ConsecutiveArguments::of(...)) instead of $mock->withConsecutive(...)',
             [
                 new CodeSample(
                     <<<PHP
@@ -72,7 +73,7 @@ final class GoodExample extends TestCase
             ->expects(self::exactly(2))
             ->method('hasAttribute')
             ->with(
-                ConsecutiveArguments::of(
+                ...ConsecutiveArguments::of(
                     ['foo'],
                     ['bar']
                 )
