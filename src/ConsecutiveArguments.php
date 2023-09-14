@@ -21,7 +21,7 @@ final class ConsecutiveArguments
      *
      * @no-named-arguments
      *
-     * @return iterable<Callback<mixed>>
+     * @return iterable<array-key, Callback<mixed>>
      */
     public static function of(array $firstConsecutiveArgument, array ...$additionalConsecutiveArguments): iterable
     {
