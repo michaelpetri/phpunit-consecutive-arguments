@@ -51,12 +51,17 @@ final class ConsecutiveArguments
             yield new Callback(
                 static function (mixed $actualArgument) use (&$argumentsGroupedByPosition, $argumentPosition): bool {
                     /**
+                     * Get expected argument for current position, if list for position is empty it means we're
+                     * evaluating additional executions which are not defined in test case, because of this we going to
+                     * accept anything.
+                     *
                      * @var array<positive-int|0, array<array-key, mixed>> $argumentsGroupedByPosition
                      * @var mixed $expectedArgument
                      */
                     $expectedArgument = \array_key_exists($argumentPosition, $argumentsGroupedByPosition)
+                    && [] !== $argumentsGroupedByPosition[$argumentPosition]
                         ? \array_shift($argumentsGroupedByPosition[$argumentPosition])
-                        : null;
+                        : new IsAnything();
 
                     if (!$expectedArgument instanceof Constraint) {
                         $expectedArgument = new IsEqual($expectedArgument);
