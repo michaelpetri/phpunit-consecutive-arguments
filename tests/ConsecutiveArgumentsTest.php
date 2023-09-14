@@ -154,10 +154,10 @@ final class ConsecutiveArgumentsTest extends TestCase
             ->method('variadic')
             ->with(
                 ...ConsecutiveArguments::of(
-                [new IsAnything(), '1.2', '1.3'],
-                ['2.1', new IsAnything(), '2.3'],
-                ['3.1', '3.2', new IsAnything()],
-            )
+                    [new IsAnything(), '1.2', '1.3'],
+                    ['2.1', new IsAnything(), '2.3'],
+                    ['3.1', '3.2', new IsAnything()],
+                )
             );
 
         $this->mock->variadic('1.1', '1.2', '1.3');
