@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace MichaelPetri\PhpunitConsecutiveArguments;
 
 use PHPUnit\Framework\Constraint\Callback;
+use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\Constraint\IsAnything;
+use PHPUnit\Framework\Constraint\IsEqual;
 
 final class ConsecutiveArguments
 {
@@ -56,8 +58,11 @@ final class ConsecutiveArguments
                         ? \array_shift($argumentsGroupedByPosition[$argumentPosition])
                         : null;
 
-                    return $expectedArgument === $actualArgument
-                        || $expectedArgument instanceof IsAnything;
+                    if (!$expectedArgument instanceof Constraint) {
+                        $expectedArgument = new IsEqual($expectedArgument);
+                    }
+
+                    return (bool) $expectedArgument->evaluate($actualArgument, '', true);
                 }
             );
         }
