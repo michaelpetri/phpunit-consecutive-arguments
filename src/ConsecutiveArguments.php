@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace MichaelPetri\PhpunitConsecutiveArguments;
 
 use PHPUnit\Framework\Constraint\Callback;
+use PHPUnit\Framework\Constraint\IsAnything;
 
 final class ConsecutiveArguments
 {
@@ -34,7 +35,7 @@ final class ConsecutiveArguments
             $arguments = \array_pad(
                 $arguments,
                 $argumentCount,
-                null
+                new IsAnything()
             );
 
             /** @var mixed $argument */
@@ -55,7 +56,8 @@ final class ConsecutiveArguments
                         ? \array_shift($argumentsGroupedByPosition[$argumentPosition])
                         : null;
 
-                    return $expectedArgument === $actualArgument;
+                    return $expectedArgument === $actualArgument
+                        || $expectedArgument instanceof IsAnything;
                 }
             );
         }
