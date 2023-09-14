@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\MichaelPetri\PhpunitConsecutiveArguments;
 
 use MichaelPetri\PhpunitConsecutiveArguments\ConsecutiveArguments;
+use PHPUnit\Framework\Constraint\IsAnything;
 use PHPUnit\Framework\TestCase;
 use Tests\MichaelPetri\PhpunitConsecutiveArguments\Stub\MockableConsecutiveArgumentInterface;
 
@@ -139,6 +140,24 @@ final class ConsecutiveArgumentsTest extends TestCase
                     ['2.1', '2.2', '2.3'],
                     ['3.1', '3.2', '3.3'],
                 )
+            );
+
+        $this->mock->variadic('1.1', '1.2', '1.3');
+        $this->mock->variadic('2.1', '2.2', '2.3');
+        $this->mock->variadic('3.1', '3.2', '3.3');
+    }
+
+    public function testWithAnythingCallback(): void
+    {
+        $this->mock
+            ->expects(self::exactly(3))
+            ->method('variadic')
+            ->with(
+                ...ConsecutiveArguments::of(
+                [new IsAnything(), '1.2', '1.3'],
+                ['2.1', new IsAnything(), '2.3'],
+                ['3.1', '3.2', new IsAnything()],
+            )
             );
 
         $this->mock->variadic('1.1', '1.2', '1.3');
