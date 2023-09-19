@@ -42,7 +42,7 @@ final class ConsecutiveArguments
 
             /** @var mixed $argument */
             foreach ($arguments as $position => $argument) {
-                $argumentsGroupedByPosition[$position] = $argumentsGroupedByPosition[$position] ?? [];
+                $argumentsGroupedByPosition[$position] ??= [];
                 $argumentsGroupedByPosition[$position][] = $argument;
             }
         }
