@@ -49,5 +49,8 @@
     "rector-test": "vendor/bin/rector --dry-run",
     "rector-debug": "vendor/bin/rector --dry-run --xdebug",
     "bash": "bash"
+  },
+  "conflict": {
+    "stevebauman/unfinalize": "*"
   }
 }
