@@ -52,10 +52,9 @@ final class ConsecutiveArguments
                 static function (mixed $actualArgument) use (&$argumentsGroupedByPosition, $argumentPosition): bool {
                     /**
                      * Get expected argument for current position, if list for position is empty it means we're
-                     * evaluating additional executions which are not defined in test case, because of this we going to
-                     * accept anything.
+                     * evaluating additional executions which are not defined in test case, because of this we're going
+                     * to accept anything.
                      *
-                     * @var array<positive-int|0, array<array-key, mixed>> $argumentsGroupedByPosition
                      * @var mixed $expectedArgument
                      */
                     $expectedArgument = \array_key_exists($argumentPosition, $argumentsGroupedByPosition)
