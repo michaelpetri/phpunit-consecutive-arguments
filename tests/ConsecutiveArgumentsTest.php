@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace Tests\MichaelPetri\PhpunitConsecutiveArguments;
 
 use MichaelPetri\PhpunitConsecutiveArguments\ConsecutiveArguments;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Constraint\IsAnything;
 use PHPUnit\Framework\TestCase;
 use Tests\MichaelPetri\PhpunitConsecutiveArguments\Stub\MockableConsecutiveArgumentInterface;
 
-/** @covers \MichaelPetri\PhpunitConsecutiveArguments\ConsecutiveArguments */
+#[CoversClass(ConsecutiveArguments::class)]
 final class ConsecutiveArgumentsTest extends TestCase
 {
     private MockableConsecutiveArgumentInterface $mock;
