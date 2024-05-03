@@ -24,6 +24,9 @@ jobs:
       fail-fast: false
       matrix: ${{ fromJSON(needs.matrix.outputs.matrix) }}
     steps:
+      - name: Remove composer.lock
+        if: matix.job.php > "8.2"
+        run: rm composer.lock
       - name: ${{ matrix.name }}
         uses: laminas/laminas-continuous-integration-action@v1
         with:
