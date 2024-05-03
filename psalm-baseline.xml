@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.13.1@086b94371304750d1c673315321a55d15fc59015">
+<files psalm-version="5.24.0@462c80e31c34e58cc4f750c656be3927e80e550e">
   <file src="src/ConsecutiveArguments.php">
     <MixedAssignment>
-      <code>$argumentsGroupedByPosition[$position][]</code>
+      <code><![CDATA[$argumentsGroupedByPosition[$position][]]]></code>
     </MixedAssignment>
   </file>
 </files>
