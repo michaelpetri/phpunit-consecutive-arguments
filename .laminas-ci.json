@@ -1,0 +1,15 @@
+{
+  "additional_checks": [
+    {
+      "name": "Static Code Analysis via psalm.phar",
+      "job": {
+        "command": "./vendor/bin/psalm.phar",
+        "php": "@lowest",
+        "dependencies": "locked"
+      }
+    }
+  ],
+  "exclude": [
+    {"name": "Psalm"}
+  ]
+}
