@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Define variables
-PHP_VERSION=${PHP_VERSION:-"8.2.6-cli-alpine3.18"}
+PHP_VERSION=${PHP_VERSION:-"8.4.3-cli-alpine"}
 IMAGE_NAME="localhost/michaelpetri/composer-wrapper:${PHP_VERSION}-$(md5sum Dockerfile | awk '{ print $1 }')"
 
 # Build container if required
@@ -26,6 +26,7 @@ docker run --rm --interactive --tty \
     --env="PHP_IDE_CONFIG=serverName=localhost" \
     --env="XDEBUG_CONFIG=client_host=host.docker.internal client_port=9003 start_with_request=yes" \
     --env="XDEBUG_SESSION=PHPSTORM" \
+    --env="PHP_CS_FIXER_IGNORE_ENV=true" \
     "${IMAGE_NAME}" \
     "composer" \
     "${@}"

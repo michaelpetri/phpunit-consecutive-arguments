@@ -10,14 +10,14 @@
   ],
   "license": "MIT",
   "require": {
-    "php": "~8.2.0 || ~8.3.0",
-    "phpunit/phpunit": "^10.2 || ^11.0"
+    "php": "~8.3.0 || ~8.4.0",
+    "phpunit/phpunit": "^10.5.45 || ^11.5.7"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^3.15.1",
+    "friendsofphp/php-cs-fixer": "^3.68.5",
     "roave/security-advisories": "dev-latest",
     "rector/rector": "^1.2.4",
-    "psalm/phar": "^5.24"
+    "psalm/phar": "^6.5.1"
   },
   "autoload": {
     "psr-4": {
