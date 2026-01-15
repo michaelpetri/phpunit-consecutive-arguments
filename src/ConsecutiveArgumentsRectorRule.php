@@ -14,6 +14,7 @@ final class ConsecutiveArgumentsRectorRule extends AbstractRector
     /**
      * @return array<class-string<Node>>
      */
+    #[\Override]
     public function getNodeTypes(): array
     {
         return [
@@ -21,6 +22,7 @@ final class ConsecutiveArgumentsRectorRule extends AbstractRector
         ];
     }
 
+    #[\Override]
     public function refactor(Node $node): ?Node
     {
         if (!$node instanceof Node\Expr\MethodCall) {
